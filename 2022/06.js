@@ -7,10 +7,10 @@ function getMarker(markerLength) {
     }
 }
 
-// 5.1
+// 6.1
 getMarker(4);
 // 1140
 
-// 5.2
+// 6.2
 getMarker(14);
 // 3495
