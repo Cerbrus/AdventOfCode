@@ -45,7 +45,7 @@ class Directory {
     get size() {
         return [
             ...this.files.map(f => f.size),
-          ...this.children.map(getSize)
+            ...this.children.map(getSize)
         ].reduce((a, b) => a + b);
     }
 }
