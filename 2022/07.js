@@ -62,7 +62,6 @@ const fs = new FileSystem(commands);
 fs.directories.map(d => d.size)
     .filter(s => s <= 100000)
     .reduce((a, b) => a + b);
-
 // 1423358 
 
 // 7.2
