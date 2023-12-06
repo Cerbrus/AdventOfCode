@@ -2,27 +2,69 @@ import * as console from 'console';
 import { ChallengeBase, IAnswer } from '../challenge.base';
 
 interface IParseResult {
+    races: Array<IRace>;
+    race_2: IRace;
+}
+
+interface IRace {
+    time: number;
+    distance: number;
+}
+
+interface IInput {
+    hold: number;
+    distance: number;
 }
 
 class Challenge extends ChallengeBase<IParseResult> {
-    constructor() {
-        super(true);
-    }
-
     protected parseInput(inputString: string): IParseResult {
-        const lines = inputString.split(/[\r\n]{4}/);
-        return {};
+        const lines = inputString.split(/[\r\n]+/).map(l => {
+            const times = l.split(/\s+/);
+            times.shift();
+            return times.map(Number);
+        });
+
+        const races = lines[0].map((time, index) => ({
+            time,
+            distance: lines[1][index]
+        }));
+
+        const [time, distance] = inputString
+            .replace(/\s+/g, '')
+            .match(/\d+/g)
+            .map(Number);
+
+        const race_2 = { time, distance };
+
+        return { races, race_2 };
     }
 
     protected processInput(data: IParseResult): IAnswer {
-        const answerOne = 0;
+        const answerOne = data.races
+            .map(this.calculateRaceOptions)
+            .reduce((val, current) => val * current.length, 1);
 
-        const answerTwo = 0;
+        const answerTwo = this.calculateRaceOptions(data.race_2).length;
 
         return {
             one: answerOne,
             two: answerTwo
         };
+    }
+
+    private calculateRaceOptions(race: IRace): Array<IInput> {
+        const distanceToBeat = race.distance;
+        const maxTime = race.time;
+
+        const options: Array<IInput> = [];
+
+        for (let hold = 1; hold < maxTime; hold++) {
+            const distance = (maxTime - hold) * hold;
+            if (distance > distanceToBeat)
+                options.push({ hold, distance });
+        }
+
+        return options;
     }
 }
 
