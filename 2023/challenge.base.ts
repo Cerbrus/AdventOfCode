@@ -20,11 +20,13 @@ export abstract class ChallengeBase<TParsedInput> {
                 console.error(err);
                 return;
             }
-            const parsedInput = this.parseInput(data);
-            const result = this.timeFunction(() => this.processInput(parsedInput));
+            const parsedInput =  this.timeFunction(() => this.parseInput(data));
+            const result = this.timeFunction(() => this.processInput(parsedInput.answer));
+
+            const totalDuration = parsedInput.duration + result.duration;
 
             console.log(`
-Processed input in ${Math.floor(result.duration / 60000)} minutes and ${((result.duration / 1000) % 60).toFixed(5)} seconds.
+Processed input in ${Math.floor(totalDuration / 60000)} minutes and ${((totalDuration / 1000) % 60).toFixed(5)} seconds (${totalDuration.toFixed(5)}ms).
 The answer to the ${isExample ? 'example ' : ''}input is:
  - Part one: ${result.answer.one}
  - Part two: ${result.answer.two}
