@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94aa5ac1-b94e-475a-b4b5-5d9de0060210" name="Changes" comment="" />
+    <list default="true" id="94aa5ac1-b94e-475a-b4b5-5d9de0060210" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/2023/08/challenge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/2023/08/challenge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2023/08/input.example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/2023/08/input.example.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2023/08/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/2023/08/input.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +17,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2Z7zRAElGIF8DCXQvtm4lsSUS1f" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,6 +31,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/DEV/MD/AdventOfCode",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\DEV\\MD\\AdventOfCode\\2023\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -39,6 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701787895298</updated>
       <workItem from="1701787896539" duration="17000" />
+      <workItem from="1702014097887" duration="23000" />
     </task>
     <servers />
   </component>
