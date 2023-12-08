@@ -13,10 +13,9 @@ interface INode {
 }
 
 class Challenge extends ChallengeBase<IParseResult> {
-    // constructor() {
-    //     super(true);
-    // }
-
+    constructor() {
+        super(false, 1);
+    }
     protected parseInput(inputString: string): IParseResult {
         const [instructions, ...nodeStrings] = inputString.split(/[\r\n]+/);
 
@@ -30,7 +29,7 @@ class Challenge extends ChallengeBase<IParseResult> {
 
     protected processInput(data: IParseResult): IAnswer {
         // const answerOne = this.navigateMapRecursive('AAA', data, 0);
-        const answerOne = 0; //this.navigateMapWhile(data);
+        const answerOne = this.navigateMapWhile(data);
 
         const answerTwo = this.navigateMapWhileGhost(data);
 
@@ -84,7 +83,7 @@ class Challenge extends ChallengeBase<IParseResult> {
         return step;
     }
 
-    navigateMapWhileGhost(data: IParseResult): number {
+    private navigateMapWhileGhost(data: IParseResult): number {
         const distances = Object
             .values(data.nodes)
             .map(n => n.from)

@@ -6,7 +6,7 @@ export interface IAnswer {
 }
 
 export abstract class ChallengeBase<TParsedInput> {
-    constructor(exampleOnly = false) {
+    constructor(exampleOnly = false, private readonly exampleVersion = null) {
         this.processFile(true);
 
         if (!exampleOnly)
@@ -14,13 +14,13 @@ export abstract class ChallengeBase<TParsedInput> {
     }
 
     private processFile(isExample = true): void {
-        const file = isExample ? './input.example.txt' : './input.txt';
+        const file = isExample ? `./input.example${this.exampleVersion ? `.${this.exampleVersion}` : ''}.txt` : './input.txt';
         fs.readFile(file, 'utf8', (err: any, data: string): void => {
             if (err) {
                 console.error(err);
                 return;
             }
-            const parsedInput =  this.timeFunction(() => this.parseInput(data));
+            const parsedInput = this.timeFunction(() => this.parseInput(data));
             const result = this.timeFunction(() => this.processInput(parsedInput.answer));
 
             const totalDuration = parsedInput.duration + result.duration;
