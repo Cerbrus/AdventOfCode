@@ -1,4 +1,5 @@
 import * as console from 'console';
+import { MathUtil } from '../../lib';
 import { ChallengeBase, IAnswer } from '../challenge.base';
 
 interface IParseResult {
@@ -85,26 +86,12 @@ class Challenge extends ChallengeBase<IParseResult> {
     }
 
     private navigateMapWhileGhost(data: IParseResult): number {
-        const distances = Object
+        return Object
             .values(data.nodes)
             .map(n => n.from)
             .filter(n => n.endsWith('A'))
-            .map(n => this.navigateMapWhile(data, n, true));
-
-        return distances.reduce((result, current) => this.lowestCommonMultiplier(result, current));
-    }
-
-    private greatestCommonDivider(a: number, b: number): number {
-        for (let temp = b; b !== 0;) {
-            b = a % b;
-            a = temp;
-            temp = b;
-        }
-        return a;
-    }
-
-    private lowestCommonMultiplier(a: number, b: number): number {
-        return (a * b) / this.greatestCommonDivider(a, b);
+            .map(n => this.navigateMapWhile(data, n, true))
+            .reduce(MathUtil.lcm.bind(this));
     }
 }
 
