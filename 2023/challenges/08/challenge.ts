@@ -62,17 +62,17 @@ class Challenge extends ChallengeBase<IParseResult> {
 
     /**
      * This works, and is much faster than the recursive version.
-     * @param {IParseResult} data
-     * @param startNode
-     * @param endsWithZ
-     * @returns {number}
+     * @param {IParseResult} data Data to navigate.
+     * @param startNode Node to start at.
+     * @param endTest Regular expression to test the end node against.
+     * @returns {number} Number of steps taken.
      * @private
      */
-    private navigateMapWhile(data: IParseResult, startNode = 'AAA', endsWithZ = false): number {
+    private navigateMapWhile(data: IParseResult, startNode = 'AAA', endTest = /ZZZ/): number {
         let step = 0;
         let nextNode = startNode;
 
-        while (endsWithZ ? nextNode[2] !== 'Z' : nextNode !== 'ZZZ') {
+        while (!endTest.test(nextNode)) {
             const currentNode = data.nodes[nextNode];
             const direction = data.instructions[step % data.instructions.length];
             nextNode = currentNode[direction];
@@ -88,7 +88,7 @@ class Challenge extends ChallengeBase<IParseResult> {
             .values(data.nodes)
             .map(n => n.from)
             .filter(n => n.endsWith('A'))
-            .map(n => this.navigateMapWhile(data, n, true))
+            .map(n => this.navigateMapWhile(data, n, /Z$/))
             .reduce(Math.lcm);
     }
 }
