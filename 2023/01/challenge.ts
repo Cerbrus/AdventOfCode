@@ -20,19 +20,17 @@ class Challenge extends ChallengeBase<IParseResult> {
 
     private readonly numberMapRegex = new RegExp(Object.keys(this.numberMap).join('|'), 'g');
 
-    protected parseInput(inputString: string): IParseResult {
-        const lines = inputString
-            .split(/[\r\n]+/g)
-            .map(l => l.replace(this.numberMapRegex, (match) => this.numberMap[match]))
-            .map(line => {
-                const digits = line.match(/\d/g);
-                return {
-                    line,
-                    calibrationValue: Number(digits[0] + digits[digits.length - 1])
-                };
-            });
-
-        return { lines };
+    protected parseInput(lines: Array<string>): IParseResult {
+        return {
+            lines: lines.map(l => l.replace(this.numberMapRegex, (match) => this.numberMap[match]))
+                .map(line => {
+                    const digits = line.match(/\d/g);
+                    return {
+                        line,
+                        calibrationValue: Number(digits[0] + digits[digits.length - 1])
+                    };
+                })
+        };
     }
 
     protected processInput(data: IParseResult): IAnswer {

@@ -17,16 +17,16 @@ interface IInput {
 }
 
 class Challenge extends ChallengeBase<IParseResult> {
-    protected parseInput(inputString: string): IParseResult {
-        const lines = inputString.split(/[\r\n]+/).map(l => {
+    protected parseInput(lines: Array<string>, inputString: string): IParseResult {
+        const raceLines = lines.map(l => {
             const times = l.split(/\s+/);
             times.shift();
             return times.map(Number);
         });
 
-        const races = lines[0].map((time, index) => ({
+        const races = raceLines[0].map((time, index) => ({
             time,
-            distance: lines[1][index]
+            distance: raceLines[1][index]
         }));
 
         const [time, distance] = inputString

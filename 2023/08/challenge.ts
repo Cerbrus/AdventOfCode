@@ -16,8 +16,9 @@ class Challenge extends ChallengeBase<IParseResult> {
     constructor() {
         super(false, 1);
     }
-    protected parseInput(inputString: string): IParseResult {
-        const [instructions, ...nodeStrings] = inputString.split(/[\r\n]+/);
+
+    protected parseInput(lines: Array<string>): IParseResult {
+        const [instructions, ...nodeStrings] = lines;
 
         const nodes = nodeStrings.reduce((map, nodeString) => {
             const [_, from, L, R] = nodeString.match(/(\w+) = \((\w+), (\w+)\)/);

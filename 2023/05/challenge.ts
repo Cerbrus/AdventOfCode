@@ -21,7 +21,7 @@ interface IParseResult {
 
 class Challenge extends ChallengeBase<IParseResult> {
 
-    protected parseInput(inputString: string): IParseResult {
+    protected parseInput(_: Array<string>, inputString: string): IParseResult {
         const inputs = inputString.split(/[\r\n]{4}/);
         const seedsString = inputs.shift()!;
         const seeds = seedsString.match(/\d+/g)!.map(Number);

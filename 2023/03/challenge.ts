@@ -16,9 +16,7 @@ interface IParseResult {
 }
 
 class Challenge extends ChallengeBase<IParseResult> {
-    protected parseInput(inputString: string): IParseResult {
-        const lines = inputString.split(/[\r\n]+/g);
-
+    protected parseInput(lines: Array<string>): IParseResult {
         const numbers = [];
         let currentNumber: INumber = null;
         for (let y = 0; y < lines.length; y++) {

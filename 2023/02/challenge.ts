@@ -21,17 +21,12 @@ const CUBE_COUNT: IColorCount = {
 };
 
 class Challenge extends ChallengeBase<IParseResult> {
-    protected parseInput(inputString: string): IParseResult {
-        const games = inputString
-            .split(/[\r\n]+/g)
-            .map(this.parseGame);
-
-        return { games };
+    protected parseInput(lines: Array<string>): IParseResult {
+        return { games: lines.map(this.parseGame) };
     }
 
     protected processInput(data: IParseResult): IAnswer {
         const answerOne = this.addPossibleGames(data.games, CUBE_COUNT);
-        console.log(data.games[0]);
         const answerTwo = this.calculatePower(data.games);
 
         return {

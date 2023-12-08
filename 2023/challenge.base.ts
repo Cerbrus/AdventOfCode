@@ -20,7 +20,7 @@ export abstract class ChallengeBase<TParsedInput> {
                 console.error(err);
                 return;
             }
-            const parsedInput = this.timeFunction(() => this.parseInput(data));
+            const parsedInput = this.timeFunction(() => this.parseInput(data.split(/[\r\n]+/), data));
             const result = this.timeFunction(() => this.processInput(parsedInput.answer));
 
             const totalDuration = parsedInput.duration + result.duration;
@@ -34,7 +34,7 @@ The answer to the ${isExample ? 'example ' : ''}input is:
         });
     }
 
-    protected abstract parseInput(inputString: string): TParsedInput;
+    protected abstract parseInput(inputLines: Array<string>, inputString: string): TParsedInput;
 
     protected abstract processInput(data: TParsedInput): IAnswer;
 

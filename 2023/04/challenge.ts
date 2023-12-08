@@ -12,10 +12,9 @@ interface IParseResult {
 }
 
 class Challenge extends ChallengeBase<IParseResult> {
-    protected parseInput(inputString: string): IParseResult {
+    protected parseInput(lines: Array<string>): IParseResult {
         return {
-            cards: inputString
-                .split(/[\r\n]+/g)
+            cards: lines
                 .map(line => {
                     let [card, numbers] = line.split(/: +/);
                     const number = Number(card.match(/\d+/));

@@ -9,8 +9,7 @@ class Challenge extends ChallengeBase<IParseResult> {
         super(true);
     }
 
-    protected parseInput(inputString: string): IParseResult {
-        const lines = inputString.split(/[\r\n]+/);
+    protected parseInput(lines: Array<string>): IParseResult {
         return {};
     }
 

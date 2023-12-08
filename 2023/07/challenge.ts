@@ -11,8 +11,8 @@ class Challenge extends ChallengeBase<IParseResult> {
     private _cardValues = this._cards.reduce((acc, card, i) =>
         ({ ...acc, [card]: i }), {} as ICardCount);
 
-    protected parseInput(inputString: string): IParseResult {
-        const hands = this.sortPokerHands(inputString.split(/[\r\n]+/).map(s => {
+    protected parseInput(lines: Array<string>): IParseResult {
+        const hands = this.sortPokerHands(lines.map(s => {
             const [cards, bid] = s.split(' ');
 
             // FML: We're not actually using poker rules.
