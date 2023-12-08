@@ -1,13 +1,15 @@
-export class MathUtil {
+export namespace Lib.Math {
     /**
      * Least common multiple
      * @param {number} a
      * @param {number} b
      * @returns {number}
      */
-    public static lcm(a: number, b: number): number {
-        return (a * b) / this.gcd(a, b);
+    function _lcm(a: number, b: number): number {
+        return (a * b) / gcd(a, b);
     }
+
+    export const lcm = _lcm.bind(Math);
 
     /**
      * Greatest common divisor
@@ -15,7 +17,9 @@ export class MathUtil {
      * @param {number} b
      * @returns {number}
      */
-    public static gcd(a: number, b: number): number {
+    function _gcd(a: number, b: number): number {
         return b == 0 ? a : this.gcd(b, a % b);
     }
+
+    export const gcd = _gcd.bind(Math);
 }

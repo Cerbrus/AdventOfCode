@@ -1,5 +1,4 @@
-import * as console from 'console';
-import { MathUtil } from '../../lib';
+import { Lib } from '../../lib';
 import { ChallengeBase, IAnswer } from '../challenge.base';
 
 interface IParseResult {
@@ -25,6 +24,7 @@ class Challenge extends ChallengeBase<IParseResult> {
             const [_, from, L, R] = nodeString.match(/(\w+) = \((\w+), (\w+)\)/);
             return { ...map, [from]: { from, L, R } };
         }, {});
+        console.log('test');
 
         return { instructions, nodes };
     }
@@ -91,7 +91,7 @@ class Challenge extends ChallengeBase<IParseResult> {
             .map(n => n.from)
             .filter(n => n.endsWith('A'))
             .map(n => this.navigateMapWhile(data, n, true))
-            .reduce(MathUtil.lcm.bind(this));
+            .reduce(Lib.Math.lcm);
     }
 }
 
