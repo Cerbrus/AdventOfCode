@@ -25,7 +25,7 @@ class Challenge extends ChallengeBase<IParseResult> {
     }
 
     protected processInput(data: IParseResult): IAnswer {
-        const answerOne = data.cards.reduce((points, card) => points + this.calculatePoints(card), 0);
+        const answerOne = data.cards.sum( card => this.calculatePoints(card));
 
         const cards = [...data.cards];
         for (let i = 0; i < cards.length; i++) {

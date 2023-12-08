@@ -1,4 +1,3 @@
-import { Lib } from '../../lib';
 import { ChallengeBase, IAnswer } from '../challenge.base';
 
 interface IParseResult {
@@ -91,7 +90,7 @@ class Challenge extends ChallengeBase<IParseResult> {
             .map(n => n.from)
             .filter(n => n.endsWith('A'))
             .map(n => this.navigateMapWhile(data, n, true))
-            .reduce(Lib.Math.lcm);
+            .reduce(Math.lcm);
     }
 }
 

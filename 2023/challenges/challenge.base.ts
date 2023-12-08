@@ -1,5 +1,8 @@
 const fs = require('node:fs');
 
+import '../lib/array.extensions';
+import '../lib/math.extensions';
+
 export interface IAnswer {
     one: number;
     two: number;

@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ESNext"
+    "target": "ESNext",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./lib"
+    ]
   }
 }

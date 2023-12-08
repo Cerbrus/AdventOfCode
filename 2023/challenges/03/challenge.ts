@@ -1,4 +1,3 @@
-import * as console from 'console';
 import { ChallengeBase, IAnswer } from '../challenge.base';
 
 type TCoordinates = [number, number];
@@ -56,10 +55,10 @@ class Challenge extends ChallengeBase<IParseResult> {
         const answerOne = data.numbers.filter(n => n.isPartNumber).reduce((total, number) => total + number.value, 0);
 
         const gearParts = data.numbers.filter(n => n.gear);
-        const grouped = this.groupBy(gearParts, 'gear');
+        const grouped = gearParts.groupBy('gear');
 
         const answerTwo = Object.entries(grouped)
-            .filter(([key, numbers]) => numbers.length > 1)
+            .filter(([_, numbers]) => numbers.length > 1)
             .map(([_, [a, b]]) => a.value * b.value)
             .reduce((a, b) => a + b);
 
@@ -96,15 +95,6 @@ class Challenge extends ChallengeBase<IParseResult> {
             lines[y][x] === '*'
         ) ? [x, y] : null;
     }
-
-    groupBy<TValue, TKey extends keyof TValue>(items: Array<TValue>, keyProperty: TKey): Record<TKey, Array<TValue>> {
-        return items.reduce((resut, item) => {
-            const key = String(item[keyProperty]);
-            resut[key] ||= [];
-            resut[key].push(item);
-            return resut;
-        }, {} as Record<TKey, Array<TValue>>);
-    };
 }
 
 new Challenge();

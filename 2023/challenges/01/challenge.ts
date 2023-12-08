@@ -34,7 +34,7 @@ class Challenge extends ChallengeBase<IParseResult> {
     }
 
     protected processInput(data: IParseResult): IAnswer {
-        const answerOne = data.lines.reduce((total, line) => total + line.calibrationValue, 0);
+        const answerOne = data.lines.sum(l => l.calibrationValue);
 
         const answerTwo = answerOne;
 

@@ -51,8 +51,7 @@ class Challenge extends ChallengeBase<IParseResult> {
                     }))
                 .pop().score;
 
-        const cardCounts: ICardCount = [...cards]
-            .reduce((acc: ICardCount, card: TCard) => ({ ...acc, [card]: (acc[card] ?? 0) + 1 }), {} as ICardCount);
+        const cardCounts = [...cards].count(c => c) as ICardCount;
         const cardCountValues = Object.values(cardCounts);
         const entries = Object.entries(cardCounts) as Array<[TCard, number]>;
 
@@ -87,8 +86,7 @@ class Challenge extends ChallengeBase<IParseResult> {
     }
 
     private getSets(counts: Array<[string, number]>, cardsInRow: number): Array<[string, number]> {
-        return counts.filter(([_, count]) => count === cardsInRow)
-            .sort((a, b) => this._cardValues[b[0]] - this._cardValues[a[0]]);
+        return counts.filter(([_, count]) => count === cardsInRow).sortOn(c => this._cardValues[c[0]]);
     }
 
     private singles(counts: Array<[string, number]>): string {

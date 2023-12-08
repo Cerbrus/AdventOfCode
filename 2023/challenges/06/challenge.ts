@@ -40,9 +40,7 @@ class Challenge extends ChallengeBase<IParseResult> {
     }
 
     protected processInput(data: IParseResult): IAnswer {
-        const answerOne = data.races
-            .map(this.calculateRaceOptions)
-            .reduce((val, current) => val * current.length, 1);
+        const answerOne = data.races.map(this.calculateRaceOptions).product(c => c.length);
 
         const answerTwo = this.calculateRaceOptions(data.race_2).length;
 
