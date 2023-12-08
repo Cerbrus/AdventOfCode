@@ -23,7 +23,6 @@ class Challenge extends ChallengeBase<IParseResult> {
             const [_, from, L, R] = nodeString.match(/(\w+) = \((\w+), (\w+)\)/);
             return { ...map, [from]: { from, L, R } };
         }, {});
-        console.log('test');
 
         return { instructions, nodes };
     }
