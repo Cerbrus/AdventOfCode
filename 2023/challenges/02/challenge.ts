@@ -1,4 +1,3 @@
-import * as console from 'console';
 import { ChallengeBase, IAnswer } from '../challenge.base';
 
 interface IParseResult {
